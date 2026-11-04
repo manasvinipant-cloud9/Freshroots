@@ -1,11 +1,11 @@
 import RecsTable from "@/components/RecsTable";
-import { getDb } from "@/lib/db";
+import { ready } from "@/lib/store";
 import { latestSuccess, runExceptions, runRecs } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const db = getDb();
+  const db = await ready();
   const run = await latestSuccess(db);
   if (!run) return <p className="mt-10 text-center text-ink-3">No successful run yet.</p>;
   const [rows, excs] = await Promise.all([runRecs(db, run.run_id), runExceptions(db, run.run_id)]);

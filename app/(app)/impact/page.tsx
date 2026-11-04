@@ -1,5 +1,5 @@
 import { Card, Stat } from "@/components/ui";
-import { getDb } from "@/lib/db";
+import { ready } from "@/lib/store";
 import { APP } from "@/lib/config";
 import { REASON_LABEL } from "@/lib/format";
 import { decisionStats, latestSuccess, runRecs } from "@/lib/queries";
@@ -7,7 +7,7 @@ import { decisionStats, latestSuccess, runRecs } from "@/lib/queries";
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const db = getDb();
+  const db = await ready();
   const [run, stats] = await Promise.all([latestSuccess(db), decisionStats(db)]);
   const p1 = run ? (await runRecs(db, run.run_id)).filter((r) => r.priority === "P1").length : null;
   const c = (d: string) => stats.filter((s) => s.decision === d).reduce((a, s) => a + s.n, 0);

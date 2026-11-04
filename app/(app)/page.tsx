@@ -1,13 +1,13 @@
 import RecsTable from "@/components/RecsTable";
 import { Stat } from "@/components/ui";
-import { getDb } from "@/lib/db";
+import { ready } from "@/lib/store";
 import { DEFAULT_RULES } from "@/lib/config";
 import { latestSuccess, runExceptions, runRecs, runs } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ run?: string }> }) {
-  const db = getDb();
+  const db = await ready();
   const sp = await searchParams;
   const run = sp.run ? (await runs(db, 200)).find((r) => r.run_id === Number(sp.run) && r.status === "SUCCESS") : await latestSuccess(db);
   if (!run) {

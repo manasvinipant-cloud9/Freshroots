@@ -1,7 +1,7 @@
 import { Download } from "lucide-react";
 import { CreatePending } from "@/components/Actions";
 import { Badge, Card, Stat } from "@/components/ui";
-import { getDb } from "@/lib/db";
+import { ready } from "@/lib/store";
 import { killState } from "@/lib/killswitch";
 import { approvedWithoutPo, lifecycle, poDrafts, statusCounts } from "@/lib/queries";
 import { ACTION_LABEL, when } from "@/lib/format";
@@ -9,7 +9,7 @@ import { ACTION_LABEL, when } from "@/lib/format";
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const db = getDb();
+  const db = await ready();
   const [counts, life, pos, held, kill] = await Promise.all([statusCounts(db), lifecycle(db), poDrafts(db), approvedWithoutPo(db), killState(db)]);
   const n = (s: string) => counts.find((c) => c.status === s)?.n ?? 0;
   return (

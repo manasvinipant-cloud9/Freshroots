@@ -234,3 +234,15 @@ describe("Gemini integration", () => {
     expect(c.calls).toEqual([]);
   });
 });
+
+describe("schema bootstrap", () => {
+  it("ready() creates the tables on an empty database, so pages never query before they exist", async () => {
+    const { PGlite } = await import("@electric-sql/pglite");
+    const { setDb } = await import("@/lib/db");
+    const { ready } = await import("@/lib/store");
+    const pg = new PGlite();
+    setDb({ query: async (t, p) => (await pg.query(t, p as any[])).rows as any[], batch: async (s) => { await pg.transaction(async (tx) => { for (const x of s) await tx.query(x.text, (x.params ?? []) as any[]); }); } });
+    const fresh = await ready();
+    expect(await fresh.query("SELECT count(*)::int n FROM runs")).toEqual([{ n: 0 }]);
+  });
+});

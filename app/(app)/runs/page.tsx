@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { UploadForm } from "@/components/Actions";
 import { Badge, Card } from "@/components/ui";
-import { getDb } from "@/lib/db";
+import { ready } from "@/lib/store";
 import { aiCalls, auditLog, dqIssues, runs, uploadedFiles } from "@/lib/queries";
 import { when } from "@/lib/format";
 
@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 const SEV: Record<string, "bad" | "warn" | "info" | "neutral"> = { HARD_STOP: "bad", SOFT_FIX: "warn", FALLBACK: "info", INFO: "neutral" };
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ run?: string }> }) {
-  const db = getDb();
+  const db = await ready();
   const sp = await searchParams;
   const all = await runs(db, 50);
   const sel = all.find((r) => r.run_id === Number(sp.run)) ?? all[0];
