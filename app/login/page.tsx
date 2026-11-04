@@ -9,7 +9,7 @@ export default function Login() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const r = await fetch("/api/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ passcode: pass }) });
-    if (r.ok) window.location.href = "/"; else setErr("Wrong passcode");
+    if (r.ok) window.location.href = "/planner"; else setErr("Wrong passcode");
   }
   return (
     <form onSubmit={submit} className="mx-auto mt-32 w-full max-w-sm rounded-xl border border-line bg-panel p-6 shadow-card">

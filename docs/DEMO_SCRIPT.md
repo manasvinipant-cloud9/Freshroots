@@ -1,6 +1,6 @@
 # 5-minute demo
 
-Setup once: `npm run migrate`, `npm run dev`, open the app. Seed data is as-of 2026-10-19: October, a festival month.
+Setup once: `npm run migrate`, `npm run dev`, open the app (landing page at `/`, planner at `/planner`). Seed data is as-of 2026-10-19: October, a festival month.
 
 1. **Run the pipeline (0:00).** Header, **Run now**, untick Gemini if there is no key, Run. Point out 7 actions out of 15 SKUs. Open **Data quality and runs** to show the report and the fallbacks used (no price, lead time, on-order units, distributor column).
 2. **A P1 stockout row (1:00).** On **Recommended actions** click SKU001 Mango Drink: High demand plus Stockout risk, cover 3.35 weeks, +21.4%, Reorder now 750 (1.5 x 500). The drawer shows the machine-readable reasons. Note perishables (Multigrain Bread, Almond Milk) rank first within P1.

@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { COOKIE, tokenFor } from "@/lib/auth";
 
 export async function middleware(req: NextRequest) {
+  if (req.nextUrl.pathname === "/") return NextResponse.next();   // public landing page
   const passcode = process.env.APP_PASSCODE;
   if (!passcode) return NextResponse.next();
   if ((req.cookies.get(COOKIE)?.value ?? "") === (await tokenFor(passcode))) return NextResponse.next();

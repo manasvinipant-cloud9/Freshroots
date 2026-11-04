@@ -33,7 +33,7 @@ npm install
 cp .env.example .env.local        # fill in DATABASE_URL (Neon), GEMINI_API_KEY, CRON_SECRET
 npm run migrate                   # creates the tables
 npm run run:pipeline -- --no-ai   # seed data, rules only: reproduces the golden table
-npm run dev                       # http://localhost:3000
+npm run dev                       # http://localhost:3000 (landing page); the planner is at /planner
 npm test                          # 68 tests incl. every rubric example (in-memory Postgres, no Neon needed)
 ```
 

@@ -10,7 +10,7 @@ import { cn } from "./ui";
 import type { KillState } from "@/lib/killswitch";
 
 const NAV = [
-  { href: "/", label: "Recommended actions", icon: ClipboardList },
+  { href: "/planner", label: "Recommended actions", icon: ClipboardList },
   { href: "/exceptions", label: "Exceptions queue", icon: ShieldAlert },
   { href: "/status", label: "Status and POs", icon: Truck },
   { href: "/runs", label: "Data quality and runs", icon: Database },
@@ -27,10 +27,10 @@ export default function Shell({ kill, lastRun, schedule, children }: { kill: Kil
   return (
     <div className="flex min-h-screen">
       <aside className="hidden w-60 shrink-0 flex-col border-r border-line bg-sidebar p-3 md:flex">
-        <div className="mb-4 flex items-center gap-2 px-2 pt-1 text-[15px] font-semibold"><Sprout size={18} className="text-accent" /> Freshroots</div>
+        <Link href="/" className="mb-4 flex items-center gap-2 px-2 pt-1 text-[15px] font-semibold"><Sprout size={18} className="text-accent" /> Freshroots</Link>
         <nav className="flex flex-col gap-0.5">
           {NAV.map(({ href, label, icon: I }) => {
-            const active = href === "/" ? path === "/" : path.startsWith(href);
+            const active = path.startsWith(href);
             return <Link key={href} href={href} className={cn("flex h-9 items-center gap-2.5 rounded-lg px-3 text-[13.5px]", active ? "bg-raised font-semibold text-ink" : "text-ink-3 hover:bg-hover hover:text-ink")}><I size={16} />{label}</Link>;
           })}
         </nav>
@@ -43,7 +43,7 @@ export default function Shell({ kill, lastRun, schedule, children }: { kill: Kil
       </aside>
       <div className="min-w-0 flex-1">
         <header className="sticky top-0 z-30 flex flex-wrap items-center gap-3 border-b border-line bg-sidebar/95 px-4 py-2 backdrop-blur">
-          <nav className="flex gap-1 md:hidden">{NAV.map(({ href, label, icon: I }) => <Link key={href} href={href} aria-label={label} className={cn("rounded-lg p-2", (href === "/" ? path === "/" : path.startsWith(href)) ? "bg-raised text-ink" : "text-ink-3")}><I size={16} /></Link>)}</nav>
+          <nav className="flex gap-1 md:hidden">{NAV.map(({ href, label, icon: I }) => <Link key={href} href={href} aria-label={label} className={cn("rounded-lg p-2", path.startsWith(href) ? "bg-raised text-ink" : "text-ink-3")}><I size={16} /></Link>)}</nav>
           <div className="ml-auto flex items-center gap-2">
             <RunNow killEngaged={kill.engaged} />
             <KillSwitch state={kill} />
