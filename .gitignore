@@ -1,0 +1,12 @@
+node_modules
+.next
+.env
+.env.local
+.vercel
+next-env.d.ts
+*.tsbuildinfo
+out/
+data_scale/
+.pytest_cache/
+reference-python/.venv/
+.local-db

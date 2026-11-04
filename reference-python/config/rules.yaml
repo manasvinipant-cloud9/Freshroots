@@ -1,0 +1,23 @@
+# Business rules from RUBRIC.md section 2. Every value is configuration.
+recent_window_weeks: 4
+baseline_window_weeks: 12
+high_demand_threshold_pct: 20
+high_demand_reorder_multiplier: 1.5
+stockout_cover_weeks: 6
+overstock_cover_weeks: 14
+perishable_min_cover_weeks: 3
+perishable_max_cover_weeks: 4
+festival_months: [10, 11, 3]        # fallback only; calendar file wins
+festival_uplift_pct: 25
+festival_uplift_applies_to_r1_baseline: false   # [ASSUMPTION] RUBRIC section 3
+min_history_weeks: 12                           # [ASSUMPTION]
+max_data_age_days: 10                           # [ASSUMPTION] measured vs as-of date
+distributor_anomaly_z: 2.5                      # [ASSUMPTION]
+distributor_anomaly_drop_pct: 40
+distributor_anomaly_min_avg_units: 10           # [ASSUMPTION] ignore tiny distributors (noise)
+distributor_anomaly_min_history_weeks: 8        # [ASSUMPTION]
+sku_wow_spike_pct: 50                           # [ASSUMPTION]
+target_cover_weeks: 8                           # fallback qty, non-perishable
+perishable_target_cover_weeks: 3.5              # fallback qty, perishable
+max_missing_inventory_pct: 20                   # hard stop, RUBRIC section 7
+max_filled_weeks: 2                             # soft fix: flag SKU above this

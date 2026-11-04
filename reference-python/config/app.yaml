@@ -1,0 +1,20 @@
+paths:
+  data_dir: data
+  db_path: out/freshroots.db
+  po_drafts_dir: out/po_drafts
+schedule:                       # [ASSUMPTION] "twice a week"
+  day_of_week: "mon,thu"
+  hour: 7
+  minute: 0
+  timezone: Asia/Kolkata
+ai:
+  model: gemini-2.5-flash       # config value, never hardcoded in code
+  temperature: 0.2
+  batch_size: 20
+  timeout_seconds: 60
+  forecast_disagree_pct: 40
+  max_forecast_multiple: 5      # forecast week must be <= 5 x max historical week
+baseline_case:                  # numbers quoted in the case, shown on the Impact page
+  planning_error_cost_lakhs_per_quarter: "28-34"
+  forecast_cycle: "monthly, reaching procurement 3-4 weeks stale"
+  manual_prep_days_per_month: 2

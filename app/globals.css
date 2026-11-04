@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(:not(.light), :not(.light) *));
+
+/* Freshroots design tokens (same forest-black ladder as the other apps). Mint = supported/primary, amber = needs attention, red = genuine risk. */
+:root {
+  --sidebar: #090e0c; --page: #0d1311; --panel: #121a17; --raised: #18231f; --sunken: #0b110f; --thead: #0f1613; --chip: #1b2a24;
+  --hover: #15201c; --line: #22322b; --line-soft: #1a2722; --line-ctl: #2d4138;
+  --ink: #e8efeb; --ink-2: #c3cfc8; --ink-3: #98a8a0; --ink-4: #74857c;
+  --accent: #6fd9a8; --btn: #2a9a6c; --btn-text: #04140d;
+  --good: #5fd3a0; --good-bg: #12332a; --warn: #e6b95d; --warn-bg: #2b2311; --warn-line: #8a6d2f; --bad: #f0827a; --bad-bg: #331a1b;
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 8px 24px -12px rgb(0 0 0 / 0.6);
+}
+.light {
+  --sidebar: #f7f2e9; --page: #f4efe6; --panel: #fbf8f2; --raised: #efe8da; --sunken: #efe8da; --thead: #f1ebdf; --chip: #eae2d3;
+  --hover: #f4efe6; --line: #dccfb8; --line-soft: #e7decf; --line-ctl: #cdbfa6;
+  --ink: #1c2420; --ink-2: #3b4540; --ink-3: #5c6660; --ink-4: #8c938d;
+  --accent: #1f4d3a; --btn: #1f4d3a; --btn-text: #ffffff;
+  --good: #2f7d4f; --good-bg: #e3ede6; --warn: #7a4f0e; --warn-bg: #f6e7c4; --warn-line: #c9a45c; --bad: #b4442f; --bad-bg: #f8e3dc;
+  --shadow: 0 1px 2px rgb(60 40 10 / 0.06);
+}
+
+@theme inline {
+  --color-sidebar: var(--sidebar); --color-page: var(--page); --color-panel: var(--panel); --color-raised: var(--raised); --color-sunken: var(--sunken);
+  --color-thead: var(--thead); --color-chip: var(--chip); --color-hover: var(--hover); --color-line: var(--line); --color-line-soft: var(--line-soft);
+  --color-line-ctl: var(--line-ctl); --color-ink: var(--ink); --color-ink-2: var(--ink-2); --color-ink-3: var(--ink-3); --color-ink-4: var(--ink-4);
+  --color-accent: var(--accent); --color-btn: var(--btn); --color-btn-text: var(--btn-text);
+  --color-good: var(--good); --color-good-bg: var(--good-bg); --color-warn: var(--warn); --color-warn-bg: var(--warn-bg); --color-warn-line: var(--warn-line);
+  --color-bad: var(--bad); --color-bad-bg: var(--bad-bg);
+  --shadow-card: var(--shadow);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@layer base {
+  html { color-scheme: dark; }
+  html.light { color-scheme: light; }
+  body { @apply bg-page font-sans text-ink antialiased; }
+  table, .tnum { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; opacity: 0.5; }
+}

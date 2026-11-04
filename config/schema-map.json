@@ -1,0 +1,30 @@
+{
+  "files": {
+    "sku_master": {
+      "file": "sku_master.csv",
+      "required": { "sku_id": "SKU_ID", "sku_name": "SKU_Name", "category": "Category", "perishability": "Perishability", "standard_order_qty": "Standard_Reorder_Qty", "unit_of_measure": "Unit_of_Measure", "distributor_id": "Distributor_ID" },
+      "optional": { "unit_price": "Unit_Price", "lead_time_days": "Lead_Time_Days" }
+    },
+    "weekly_sales": {
+      "file": "weekly_sales.csv",
+      "required": { "sku_id": "SKU_ID", "week": "Week", "units_sold": "Units_Sold" },
+      "optional": { "distributor_id": "Distributor_ID" }
+    },
+    "current_inventory": {
+      "file": "current_inventory.csv",
+      "required": { "sku_id": "SKU_ID", "location": "Location", "units_on_hand": "Units_On_Hand", "as_of_date": "As_Of_Date" },
+      "optional": { "on_order_units": "On_Order_Units" }
+    },
+    "distributor_master": {
+      "file": "distributor_master.csv",
+      "required": { "distributor_id": "Distributor_ID", "distributor_name": "Distributor_Name", "region": "Region", "status": "Status" },
+      "optional": {}
+    },
+    "calendar": {
+      "file": "calendar.csv",
+      "required": { "year": "Year", "month": "Month", "year_month": "Year_Month", "is_festival_month": "Is_Festival_Month" },
+      "optional": {}
+    }
+  },
+  "perishability_values": { "perishable": "High", "standard": "Low" }
+}

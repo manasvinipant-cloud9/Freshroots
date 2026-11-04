@@ -1,0 +1,36 @@
+{
+  "name": "freshroots",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "migrate": "tsx --env-file-if-exists=.env.local scripts/migrate.ts",
+    "run:pipeline": "tsx --env-file-if-exists=.env.local scripts/run-pipeline.ts",
+    "scale:data": "tsx scripts/generate-scale-data.ts",
+    "dev:local": "LOCAL_DB_DIR=.local-db next dev",
+    "run:local": "LOCAL_DB_DIR=.local-db tsx scripts/run-pipeline.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.32.0",
+    "@neondatabase/serverless": "^1.2.0",
+    "lucide-react": "^1.67.0",
+    "next": "^15.5.29",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.15",
+    "@tailwindcss/postcss": "^4.3.4",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  }
+}
